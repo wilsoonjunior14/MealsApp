@@ -7,7 +7,17 @@
 
 import UIKit
 
-class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+protocol AddNewItemDelegate {
+    func addItem(item: Item)
+}
+
+class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, AddNewItemDelegate {
+    
+    func addItem(item: Item) {
+        self.items.append(item)
+        self.tableView.reloadData()
+    }
+    
     
     @IBOutlet
     var nameField: UITextField!
@@ -19,6 +29,9 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     @IBOutlet
     var tableView: UITableView!
+    
+    @IBOutlet
+    var newItemButton: UIBarButtonItem?
     
     var selected = Array<Item>()
     
@@ -60,6 +73,19 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         if let navigation = self.navigationController{
             navigation.popToRootViewController(animated: true)
         }
+    }
+    
+    @IBAction
+    func addNewItem(){
+        let newItemView = NewItemViewController(delegate: self)
+        if let navigation = navigationController{
+            navigation.pushViewController(newItemView, animated: true)
+        }
+    }
+    
+    func addNewItem(item: Item){
+        self.items.append(item)
+        self.tableView.reloadData()
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

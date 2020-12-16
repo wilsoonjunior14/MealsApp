@@ -63,10 +63,17 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
-                    <navigationItem key="navigationItem" id="QFv-Dw-Qb1"/>
+                    <navigationItem key="navigationItem" id="QFv-Dw-Qb1">
+                        <barButtonItem key="rightBarButtonItem" title="Add Item" id="vGO-6F-shZ">
+                            <connections>
+                                <action selector="addNewItem" destination="BYZ-38-t0r" id="mXa-h4-Sdd"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="happinessField" destination="Nrb-27-wCB" id="mh9-Au-GRj"/>
                         <outlet property="nameField" destination="WrF-7H-YOe" id="W3M-xc-oXD"/>
+                        <outlet property="newItemButton" destination="vGO-6F-shZ" id="6y4-ap-yvR"/>
                         <outlet property="tableView" destination="brf-9x-ov3" id="mnk-Ry-RhZ"/>
                     </connections>
                 </viewController>
