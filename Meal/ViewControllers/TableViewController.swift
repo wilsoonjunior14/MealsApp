@@ -15,6 +15,18 @@ class TableViewController: UITableViewController {
         Meal(name: "Meal 3", happiness: 4)
     ]
     
+    @objc func showDetails(gesture: UILongPressGestureRecognizer){
+        if gesture.state == .began{
+            let cell = gesture.view as! UITableViewCell
+            
+            let indexPath = self.tableView.indexPath(for: cell)
+            
+            let meal = self.meals[indexPath!.row]
+            
+            print (" Meal pressed: \(meal.name) \(meal.happiness) ")
+        }
+    }
+    
     override func viewDidLoad() {
         print("table view loaded")
     }
@@ -28,6 +40,11 @@ class TableViewController: UITableViewController {
         let meal = meals[row]
         
         var cell = UITableViewCell(style: .value1, reuseIdentifier: nil)
+        
+        // add gesture recognizer
+        let longPress = UILongPressGestureRecognizer(target: self, action:#selector(showDetails(gesture:)))
+        cell.addGestureRecognizer(longPress)
+        
         cell.textLabel?.text = meal.name
         return cell
     }
